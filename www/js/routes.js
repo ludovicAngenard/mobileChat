@@ -5,24 +5,16 @@ var routes = [
     url: './index.html',
   },
   {
-    path: '/about/',
-    url: './pages/about.html',
+    path: '/connexion/',
+    url: './pages/connexion.html',
+  },
+  {
+    path: '/inscription/',
+    url: './pages/inscription.html',
   },
   {
     path: '/form/',
     url: './pages/form.html',
-  },
-  {
-    path: '/catalog/',
-    componentUrl: './pages/catalog.html',
-  },
-  {
-    path: '/product/:id/',
-    componentUrl: './pages/product.html',
-  },
-  {
-    path: '/settings/',
-    url: './pages/settings.html',
   },
   {
     path: '/profile/',
