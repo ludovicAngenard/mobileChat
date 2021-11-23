@@ -1,0 +1,31 @@
+{
+  "cwd": "C:\\Users\\DamienDanet\\Desktop\\B3\\crossplatform\\mobileChat",
+  "type": [
+    "cordova"
+  ],
+  "name": "Chat Potté",
+  "framework": "core",
+  "template": "tabs",
+  "bundler": false,
+  "cssPreProcessor": false,
+  "theming": {
+    "customColor": true,
+    "color": "#ff9c00",
+    "darkTheme": false,
+    "iconFonts": true,
+    "fillBars": true
+  },
+  "customBuild": false,
+  "pkg": "io.framework7.myapp",
+  "cordova": {
+    "folder": "cordova",
+    "platforms": [
+      "android"
+    ],
+    "plugins": [
+      "cordova-plugin-statusbar",
+      "cordova-plugin-keyboard",
+      "cordova-plugin-splashscreen"
+    ]
+  }
+}
