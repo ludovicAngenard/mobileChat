@@ -1,5 +1,5 @@
 // app.js
-const connection = require('./index.js');
+const { connection } = require('./index.js');
 const http = require('http');
 
 
@@ -13,14 +13,17 @@ let app = http.createServer((req, res) => {
         case 'GET':
         break;
         case 'POST':
-            if (url.pathname == "/addUser/"){
+            if (url.pathname == "/addUser"){
               connection.connect(function(err) {
                 if (err){console.log(err)}
                 else{
                   console.log("Connected!");
                   var sql = "INSERT INTO utilisateur (name, email, password) VALUES ('name', 'email','password')";
                   connection.query(sql, function (err, result) {
-                    if (err){console.log(err)}
+
+                    if (err){
+                        console.log('err : ',err)
+                    }
                     else{
                     console.log("1 record inserted");
                     }
@@ -29,7 +32,7 @@ let app = http.createServer((req, res) => {
               });
 
             }
-            if (url.pathname == "/addMessage/"){
+            if (url.pathname == "/addMessage"){
                 connection.connect(function(err) {
                     if(err){
                       console.log("Error in the connection")
@@ -49,7 +52,7 @@ let app = http.createServer((req, res) => {
             }
         break;
         case 'PUT':
-            if (url.pathname == "/updateUser/"){
+            if (url.pathname == "/updateUser"){
 
             }
         break;

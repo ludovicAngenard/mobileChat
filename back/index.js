@@ -9,6 +9,4 @@ var connection = mysql.createConnection({
 
 // Connecting to database
 
-exports.connection = function(){
-  return connection;
-}
+module.exports = {connection};
