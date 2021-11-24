@@ -1,6 +1,8 @@
 // app.js
 const { connection } = require('./index.js');
 const http = require('http');
+const bcrypt = require('bcrypt');
+
 
 
 function addMessage(data, res){
@@ -10,12 +12,24 @@ function addMessage(data, res){
     res.statusMessage = "IT'S OK";
 }
 
+function hashPassword(password){
+  const saltRounds = 10;
+  const salt = bcrypt.genSaltSync(saltRounds);
+  const hash = bcrypt.hashSync(password, salt);
+  
+  return hash
+
+}
+
 function addUser(data, res){
-    var sql = "INSERT INTO utilisateur (name, email, password) VALUES ('name', 'email','password')";
+    const passwordhash = hashPassword(data.password)
+    var sql = `INSERT INTO utilisateur (name, email, password) VALUES (${data.name}, ${data.email},${passwordhash}`
     makeRequest(sql)
     res.statusCode = 200;
     res.statusMessage = "IT'S OK";
 }
+
+
 
 function makeRequest(sql){
           connection.query(sql,
