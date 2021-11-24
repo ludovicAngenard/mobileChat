@@ -58,3 +58,7 @@
   --f7-navbar-large-title-text-color: #fff;
 }
 /* Your app custom styles here */
+
+#view-home{
+  background-image: url(../assets/tapadami.jpg);
+}

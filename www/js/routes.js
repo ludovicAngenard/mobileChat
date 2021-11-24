@@ -3,6 +3,17 @@ var routes = [
   {
     path: '/',
     url: './index.html',
+    on:{
+      pageAfterIn: function(e,page){
+        var router = this;
+        var app = router.app;
+        var swipeToClosePopup = app.popup.create({
+          el: '.popup-swipe-to-close',
+          swipeToClose: true,
+
+          });
+      }
+    } 
   },
   {
     path: '/connexion/',

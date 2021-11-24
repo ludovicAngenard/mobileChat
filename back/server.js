@@ -20,13 +20,32 @@ function hashPassword(password){
   return hash
 
 }
+function IsUserAlreadyExist(email){
+  $sql="select * from utilisateur where (email='$email');";
+  const exist
+  if (mysqli_num_rows($res) > 0) {
+    console.log("user already exist");
+    exist =true;
+  }
+  else{
+    exist =false;
+  }
+  return exist
+}
+
 
 function addUser(data, res){
+
+  if (IsUserAlreadyExist(data.email)){
     const passwordhash = hashPassword(data.password)
     var sql = `INSERT INTO utilisateur (name, email, password) VALUES (${data.name}, ${data.email},${passwordhash}`
     makeRequest(sql)
     res.statusCode = 200;
     res.statusMessage = "IT'S OK";
+  }
+  else{
+    res.statusMessage = "EMAIL ALREADY USE";
+  }
 }
 
 
@@ -80,6 +99,7 @@ let app = http.createServer((req, res) => {
     }
     res.end(contenu)
 });
+
 
 // Start the server on port 3000
 app.listen(5000, 'localhost');
