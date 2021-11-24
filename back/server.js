@@ -14,6 +14,19 @@ let app = http.createServer((req, res) => {
         break;
         case 'POST':
             if (url.pathname == "/addUser/"){
+              connection.connect(function(err) {
+                if (err){console.log(err)}
+                else{
+                  console.log("Connected!");
+                  var sql = "INSERT INTO utilisateur (name, email, password) VALUES ('name', 'email','password')";
+                  connection.query(sql, function (err, result) {
+                    if (err){console.log(err)}
+                    else{
+                    console.log("1 record inserted");
+                    }
+                  });
+                }
+              });
 
             }
             if (url.pathname == "/addMessage/"){
