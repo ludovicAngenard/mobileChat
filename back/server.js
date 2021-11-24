@@ -3,6 +3,31 @@ const connection = require('./index.js');
 const http = require('http');
 
 
+function addMessage(date, res){
+    var sql = `INSERT INTO message (date, contenu, recepteur, emmeteur)VALUES (${data.date}, ${data.contenu}, ${data.recepteur}, ${data.emmeteur})`
+    makeRequest(sql)
+    res.statusCode = 200;
+    res.statusMessage = "IT'S OK";
+}
+
+function makeRequest(sql){
+    connection.connect(function(err) {
+        if(err){
+          console.log("Error in the connection")
+          console.log(err)
+        }
+        else{
+          connection.query(sql,
+          function (err, result) {
+            if(err)
+              console.log(`Error executing the query - ${err}`)
+            else
+              console.log("Result: ",result)
+          })
+        }
+    })
+}
+
 // Create an instance of the http server to handle HTTP requests
 let app = http.createServer((req, res) => {
     var url = new URL (req.url, `http://${req.headers.host}`); //Récupération URL
@@ -17,22 +42,13 @@ let app = http.createServer((req, res) => {
 
             }
             if (url.pathname == "/addMessage/"){
-                connection.connect(function(err) {
-                    if(err){
-                      console.log("Error in the connection")
-                      console.log(err)
-                    }
-                    else{
-                      console.log(`Database Connected`)
-                      connection.query(`SHOW DATABASES`,
-                      function (err, result) {
-                        if(err)
-                          console.log(`Error executing the query - ${err}`)
-                        else
-                          console.log("Result: ",result)
-                      })
-                    }
-                })
+                req.on('data', chunk => {
+                    data = JSON.parse(chunk);
+                    addMessage(data, res)
+                  }).on('error', (response)=>{
+                    res.statusCode = 501;
+                    res.statusMessage = "NOT CORRECT";
+                  })
             }
         break;
         case 'PUT':
