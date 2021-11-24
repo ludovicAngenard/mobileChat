@@ -10,7 +10,7 @@ function addMessage(data, res){
     res.statusMessage = "IT'S OK";
 }
 
-function addUser(data){
+function addUser(data, res){
     var sql = "INSERT INTO utilisateur (name, email, password) VALUES ('name', 'email','password')";
     makeRequest(sql)
     res.statusCode = 200;
@@ -18,12 +18,6 @@ function addUser(data){
 }
 
 function makeRequest(sql){
-    connection.connect(function(err) {
-        if(err){
-          console.log("Error in the connection")
-          console.log(err)
-        }
-        else{
           connection.query(sql,
           function (err, result) {
             if(err)
@@ -31,14 +25,12 @@ function makeRequest(sql){
             else
               console.log("Result: ",result)
           })
-        }
-    })
 }
 
 // Create an instance of the http server to handle HTTP requests
 let app = http.createServer((req, res) => {
     var url = new URL (req.url, `http://${req.headers.host}`); //Récupération URL
-    let contenu = ''
+    let contenu = 'hello world'
     // Set a response type of plain text for the response
     res.writeHead(200, {'Content-Type': 'text/plain'});
     switch(req.method) {
