@@ -4,10 +4,11 @@ const http = require('http');
 
 
 function addMessage(data, res){
-    var sql = `INSERT INTO message (date, contenu, recepteur, emmeteur)VALUES (${data.date}, ${data.contenu}, ${data.recepteur}, ${data.emmeteur})`
+    var sql = `INSERT INTO message (date, content, id_utilisateur_recu, id_utilisateur)VALUES ('0001-01-01', 'sazfdzdfsfzs', ${data.id_utilisateur_recu.id}, ${data.id_utilisateur_recu.id})`
     makeRequest(sql)
     res.statusCode = 200;
     res.statusMessage = "IT'S OK";
+
 }
 
 function addUser(data, res){
@@ -21,7 +22,7 @@ function makeRequest(sql){
           connection.query(sql,
           function (err, result) {
             if(err)
-              console.log(`Error executing the query - ${err}`)
+              console.log(`Error executing the query 3- ${err}`)
             else
               console.log("Result: ",result)
           })
@@ -70,3 +71,15 @@ let app = http.createServer((req, res) => {
 // Start the server on port 3000
 app.listen(5000, 'localhost');
 console.log('Node server running on port 5000');
+
+const io = require('socket.io')(app);
+
+io.on('connection', function(socket){
+  console.log('con')
+  socket.on('disconnect',function(){
+    console.log('disc')
+  })
+  socket.on('chat message', function(message){
+    console.log("message recu", message)
+  })
+})
