@@ -22,7 +22,7 @@ function hashPassword(password){
 }
 function IsUserAlreadyExist(email){
   $sql="select * from utilisateur where (email='$email');";
-  const exist
+  const exist = false;
   if (mysqli_num_rows($res) > 0) {
     console.log("user already exist");
     exist =true;
@@ -61,11 +61,11 @@ function makeRequest(sql){
 }
 
 // Create an instance of the http server to handle HTTP requests
-let app = http.createServer((req, res) => {
+var app = http.createServer((req, res) => {
     var url = new URL (req.url, `http://${req.headers.host}`); //Récupération URL
     let contenu = 'hello world'
+    res.writeHead(200, {'Content-Type': 'text/plain', "Access-Control-Allow-Origin": "*"});
     // Set a response type of plain text for the response
-    res.writeHead(200, {'Content-Type': 'text/plain'});
     switch(req.method) {
         case 'GET':
         break;
@@ -102,5 +102,20 @@ let app = http.createServer((req, res) => {
 
 
 // Start the server on port 3000
+
 app.listen(5000, 'localhost');
-console.log('Node server running on port 5000');
+var io = require('socket.io')(app, {
+  cors: {
+    origin: "http://localhost:8080",
+    methods: ["GET", "POST"],
+    credentials: true
+  }
+});
+
+
+console.log('Node server running on port 3000');
+
+io.on("connection", (socket) => {
+console.log(socket.id);
+});
+

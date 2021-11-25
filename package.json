@@ -27,7 +27,8 @@
     "material-icons": "^1.10.1",
     "mysql": "^2.18.1",
     "skeleton-elements": "^3.5.0",
-    "swiper": "^6.8.4"
+    "swiper": "^6.8.4",
+    "socket.io": "^4.4.0"
   },
   "devDependencies": {
     "cpy": "^8.1.2",

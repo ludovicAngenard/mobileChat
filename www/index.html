@@ -31,91 +31,46 @@
 
       <!-- Your main view/tab, should have "view-main" class. It also has "tab-active" class -->
       <div id="view-home" class="view view-main view-init tab tab-active">
-        <div class="page" data-name="home">
-          <!-- Top Navbar -->
-          <div class="navbar">
-            <div class="navbar-bg">
-            </div>
-              <div class="navbar-inner">
-                <div class="left">
-                  <a class="button popup-open" href="#" data-popup=".popup-swipe-to-close">
-                    <i class="f7-icons">person_crop_circle</i>
-                  </a>
-                  Discussion
-                </div>
-              </div>
-          </div>
-
-          <p>
-           
-            <div class="popup popup-swipe-to-close">
-              <div class="block text-align-center">
-                <div class="page-content">
-                  <img src="./assets/chat_potte.png">
-
-                  <div class="block-title">PROFIL</div>
-                  <div class="list inline-labels no-hairlines-md">
-                    <ul>
-                      <li class="item-content item-input">
-                        <div class="item-media">
-                          <i class="icon demo-list-icon"></i>
-                        </div>
-                        <div class="item-inner">
-                          <div class="item-title item-label">Nom :</div>
-                          <div class="item-input-wrap">
-                            <input type="text" placeholder="Your name" value="Votre Nom" />
-                            <span class="input-clear-button"></span>
-                          </div>
-                        </div>
-                      </li><li class="item-content item-input">
-                        <div class="item-media">
-                          <i class="icon demo-list-icon"></i>
-                        </div>
-                        <div class="item-inner">
-                          <div class="item-title item-label">Email :</div>
-                          <div class="item-input-wrap">
-                            <input type="email" placeholder="Your name" value="Votre email" />
-                            <span class="input-clear-button"></span>
-                          </div>
-                        </div>
-                      </li>
-                      <li class="item-content item-input">
-                        <div class="item-media">
-                          <i class="icon demo-list-icon"></i>
-                        </div>
-                        <div class="item-inner">
-                          <div class="item-title item-label">Mot de passe :</div>
-                          <div class="item-input-wrap">
-                            <input type="password" placeholder="Your name" value="Votre mot de passe" />
-                            <span class="input-clear-button"></span>
-                          </div>
-                        </div>
-                      </li>
-                    </ul>
-
-                  </div>
-                </div>
+<div class="page">
+    <div class="page-content login-screen-content text-align-center">
+        <img class="margin-top" src="./assets/chat_potte.png"/>
+        <div class="login-screen-title">Chat Potté</div>
+        <form>
+        <div class="list">
+            <ul>
+            <li class="item-content item-input">
                 <div class="item-inner">
-                  <i class="f7-icons">square_arrow_left_fill</i>
-                  <p>DÉCONNEXION</p>
+                <div class="item-title item-label">Username</div>
+                <div class="item-input-wrap">
+                    <input type="text" name="username" placeholder="Your username" />
                 </div>
-              </div>
+                </div>
+            </li>
+            <li class="item-content item-input">
+                <div class="item-inner">
+                <div class="item-title item-label">Password</div>
+                <div class="item-input-wrap">
+                    <input type="password" name="password" placeholder="Your password" />
+                </div>
+                </div>
+            </li>
+            </ul>
+        </div>
+        <div class="list">
+            <ul>
+            <li><a class="list-button" href="/dashboard">Se connecter</a></li>
+            </ul>
+            <div class="block-footer">
+            <p><a class="link login-screen-close" href="/inscription/">Je souhaite m'inscrire</a></p>
             </div>
-          </p>
-
-
-          <div class="card" style="margin-top: 5rem;">
-            <a href="/talk/">
-              <div class="card-content card-content-padding">
-                <i class="f7-icons">person_crop_circle</i> Nom de la personne
-              </div>
-            </a>
-          </div>
-          <img src="./assets/tapadami.jpg">
-
-  </div>
-  <!-- CORDOVA_PLACEHOLDER_DONT_REMOVE -->
+        </div>
+        </form>
+    </div>
+</div>
+<!-- CORDOVA_PLACEHOLDER_DONT_REMOVE -->
   <!-- Framework7 library -->
+
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
   <script src="framework7/framework7-bundle.min.js"></script>
   <!-- Cordova APIs -->
   <script src="js/cordova-app.js"></script>
@@ -126,5 +81,7 @@
   <script src="js/store.js"></script>
   <!-- App scripts -->
   <script src="js/app.js"></script>
+
+  
 </body>
 </html>
